@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>360 Tour</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta
+      name="description"
+      content="Interactive 360 viewer built with Three.js and Vite for exploring multiple panoramas."
+    />
+  </head>
+  <body>
+    <div id="app" class="app">
+      <div class="viewer" id="viewer" aria-label="Interactive 360 viewer"></div>
+
+      <div class="ui-layer">
+        <header class="topbar">
+          <div class="control-cluster glass-card" aria-label="Panorama controls">
+            <button class="icon-button" id="zoomOutButton" type="button" aria-label="Zoom out">
+              <span>-</span>
+            </button>
+            <button class="icon-button" id="zoomInButton" type="button" aria-label="Zoom in">
+              <span>+</span>
+            </button>
+            <button class="icon-button" id="fullscreenButton" type="button" aria-label="Full screen">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M8 4H4v4M16 4h4v4M8 20H4v-4M20 16v4h-4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <section class="places-panel glass-card" id="placesPanel">
+          <div class="panel-header">
+            <div>
+              <p class="panel-caption">Places to Explore</p>
+              <p class="panel-current" id="panelCurrent">No place selected</p>
+              <p class="panel-meta" id="panelMeta">
+                Tap or click a place to open its panorama.
+              </p>
+            </div>
+            <button
+              class="icon-button panel-toggle"
+              id="panelToggle"
+              type="button"
+              aria-expanded="true"
+              aria-label="Collapse the places list"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M6 9l6 6 6-6"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="panel-content" id="placesList" aria-label="Panorama list"></div>
+        </section>
+
+        <div class="loading-state" id="loadingState" aria-live="polite">
+          <span class="loading-dot" aria-hidden="true"></span>
+          <span id="loadingText">Loading...</span>
+        </div>
+
+        <section class="empty-state glass-card" id="emptyState" hidden>
+          <h2>No panoramas found</h2>
+          <p>
+            Add equirectangular <code>.png</code> images to the project root, then restart
+            the Vite server. They will be detected automatically.
+          </p>
+        </section>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
